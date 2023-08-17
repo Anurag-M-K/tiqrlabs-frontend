@@ -56,6 +56,10 @@ function InvitingFriendsTable() {
       selector: (row) => row?.email,
     },
     {
+      name: "Career",
+      selector: (row) => row?.yourwork,
+    },
+    {
       name: "Invite",
       selector: (row) => (
         <button
@@ -102,7 +106,7 @@ function InvitingFriendsTable() {
   const handleFilter = (event) => {
     const searchString = event.target.value.toLowerCase();
     const newData = allUsersDetails.filter((row) => {
-      return row.username.toLowerCase().includes(searchString);
+      return row.yourwork.toLowerCase().includes(searchString);
     });
     setRecords(newData);
   };
@@ -110,10 +114,11 @@ function InvitingFriendsTable() {
   return (
     <div className="p-28 ">
       <h1 className="text-center my-5 text-2xl font-medium">
-        Invite Your Friends here
+        INVITE FOR COLLABORATION
       </h1>
       <div className="text-end m-5">
         <input
+        placeholder="search by career"
           className="border-2 border-black rounded"
           onChange={handleFilter}
           type="text"

@@ -118,7 +118,7 @@ function Invitation() {
 
   return (
     <div className="p-28 my-1 ">
-      <h1 className="text-center my-5 text-2xl font-medium">Invitations</h1>
+      <h1 className="text-center my-5 text-2xl font-medium">INVITATIONS</h1>
       <DataTable
         className="border"
         pagination

@@ -1,11 +1,20 @@
-  import React from 'react'
+  import React, { useEffect, useState } from 'react'
   import { useSelector } from 'react-redux';
 
   function LoginUserHostedEvents() {
     const { eventsDetails} = useSelector(state=> state.events);
+const { userDetails } = useSelector(state=> state.user)
+const [events , setEvents ] = useState([])
+
+useEffect(()=>{
+
+  // Get the logged-in user's ID from the tokenData
+  const loggedInUserId = userDetails.id;
+  const yourEvents = eventsDetails?.filter((event) => event?.creator === loggedInUserId);
+  setEvents(yourEvents)
+},[])
 
   // Filter upcoming events based on date
-  const upcomingEvents = eventsDetails.filter(event => new Date(event.date) > new Date());
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -13,11 +22,11 @@
   
   return (
     <>
-          <div className='grid grid-cols-3 gap-x-3'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 gap-x-3'>
             
-            {upcomingEvents?.map((events, i) => (
+            {events?.map((events, i) => (
             <div
-            className="max-w-sm min-w-[410px] mb-16 bg-white border border-gray-200 rounded-lg p-2   shadow-lg "
+            className="max-w-sm  mb-16 min-w-[300px] bg-white border border-gray-200 rounded-lg p-2   shadow-lg "
             key={i}
             
             >
